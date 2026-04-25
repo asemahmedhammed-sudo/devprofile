@@ -1,0 +1,26 @@
+{
+  "nav": {
+    "home": "Home",
+    "experience": "Experience",
+    "projects": "Projects",
+    "contact": "Contact"
+  },
+  "common": {
+    "backToSite": "Back to Site",
+    "profileUnavailable": "Profile Unavailable",
+    "profileUnavailableDesc": "Database setup pending. Please sign in to the Admin gateway."
+  },
+  "dashboard": {
+    "title": "Admin Dashboard",
+    "overview": "Overview",
+    "projects": "Projects",
+    "skills": "Skills",
+    "experience": "Experience"
+  },
+  "auth": {
+    "identifier": "Identifier",
+    "passphrase": "Passphrase",
+    "signIn": "Sign In",
+    "authenticating": "Authenticating..."
+  }
+}

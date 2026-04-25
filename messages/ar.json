@@ -1,0 +1,26 @@
+{
+  "nav": {
+    "home": "الرئيسية",
+    "experience": "الخبرات",
+    "projects": "المشاريع",
+    "contact": "التواصل"
+  },
+  "common": {
+    "backToSite": "العودة للموقع",
+    "profileUnavailable": "الملف الشخصي غير متاح",
+    "profileUnavailableDesc": "قاعدة البيانات توشك أن تكون جاهزة. يرجى تسجيل الدخول إلى بوابة الإدارة."
+  },
+  "dashboard": {
+    "title": "لوحة التحكم",
+    "overview": "نظرة عامة",
+    "projects": "المشاريع",
+    "skills": "المهارات",
+    "experience": "الخبرات"
+  },
+  "auth": {
+    "identifier": "البريد الإلكتروني",
+    "passphrase": "كلمة المرور",
+    "signIn": "تسجيل الدخول",
+    "authenticating": "جارٍ التحقق..."
+  }
+}

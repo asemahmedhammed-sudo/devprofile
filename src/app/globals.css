@@ -1,0 +1,104 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ─── Design Tokens: Quiet Luxury — Dual Theme ────────────────────────────────
+   All semantic tokens defined here; components reference them via Tailwind
+   utilities (text-zinc-*, border-zinc-*, etc.) or CSS var() where needed.
+   ──────────────────────────────────────────────────────────────────────────── */
+
+/* ── Light Mode (Default) ─────────────────────────────────────────────────── */
+:root {
+  --color-base: #fafafa;
+  --color-surface-1: rgba(0, 0, 0, 0.02);
+  --color-surface-2: rgba(0, 0, 0, 0.04);
+  --color-border: rgba(0, 0, 0, 0.08);
+
+  --color-text-primary: #18181b;   /* zinc-900  */
+  --color-text-secondary: #71717a; /* zinc-500  */
+  --color-text-muted: #a1a1aa;     /* zinc-400  */
+
+  --color-accent: #52525b;         /* zinc-600  */
+  --color-accent-bright: #3f3f46;  /* zinc-700  */
+
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --duration-fast: 200ms;
+  --duration-base: 400ms;
+}
+
+/* ── Dark Mode ────────────────────────────────────────────────────────────── */
+.dark {
+  --color-base: #08080c;
+  --color-surface-1: rgba(255, 255, 255, 0.03);
+  --color-surface-2: rgba(255, 255, 255, 0.06);
+  --color-border: rgba(255, 255, 255, 0.08);
+
+  --color-text-primary: #f4f4f5;   /* zinc-100  */
+  --color-text-secondary: #71717a; /* zinc-500  */
+  --color-text-muted: #3f3f46;     /* zinc-700  */
+
+  --color-accent: #a1a1aa;         /* zinc-400  */
+  --color-accent-bright: #d4d4d8;  /* zinc-300  */
+}
+
+/* ─── Base Reset ──────────────────────────────────────────────────────────── */
+@layer base {
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+  }
+
+  html {
+    background-color: var(--color-base);
+    scroll-behavior: smooth;
+    /* Shared noise grain — very subtle, works on both themes */
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='0.025'/%3E%3C/svg%3E");
+  }
+
+  body {
+    background-color: var(--color-base);
+    color: var(--color-text-primary);
+    font-family: var(--font-inter), system-ui, -apple-system, sans-serif;
+    font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    line-height: 1.7;
+    min-height: 100dvh;
+    /* Smooth theme transition — only for background & color, not layout */
+    transition: background-color 0.3s var(--ease-out), color 0.2s var(--ease-out);
+  }
+
+  ::selection {
+    background-color: rgba(82, 82, 91, 0.15);
+    color: var(--color-text-primary);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-accent);
+    outline-offset: 3px;
+  }
+}
+
+/* ─── Utility Layer ───────────────────────────────────────────────────────── */
+@layer utilities {
+  /* Light: very soft card. Dark: classic glassmorphism */
+  .glass {
+    @apply bg-black/[0.03] backdrop-blur-md border border-zinc-200 rounded-2xl;
+    @apply dark:bg-white/[0.04] dark:border-white/[0.08];
+  }
+
+  /* Gradient heading — adapts per mode */
+  .text-gradient {
+    @apply bg-gradient-to-br from-zinc-900 via-zinc-700 to-zinc-400 bg-clip-text text-transparent;
+    @apply dark:from-zinc-100 dark:via-zinc-300 dark:to-zinc-500;
+  }
+
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  .section-padding {
+    @apply py-20 px-6 md:px-12 lg:px-24;
+  }
+}
