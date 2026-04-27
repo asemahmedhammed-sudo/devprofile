@@ -11,7 +11,14 @@ export async function getProfile(locale: Locale): Promise<ProfileData | null> {
   const supabase = await createSSRSupabase();
   const { data, error } = await supabase.from('profiles').select('*').single();
 
-  if (error || !data) return null;
+  if (error) {
+    console.error('[getProfile] Supabase error:', JSON.stringify(error));
+    return null;
+  }
+  if (!data) {
+    console.error('[getProfile] No profile row found in DB');
+    return null;
+  }
 
   return {
     full_name_en: data.full_name_en ?? '',
