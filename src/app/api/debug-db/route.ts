@@ -3,23 +3,29 @@ import { createSSRSupabase } from '@/lib/supabase/server';
 
 // TEMPORARY — remove after diagnosis
 export async function GET() {
+  const url  = process.env.NEXT_PUBLIC_SUPABASE_URL ?? '';
+  const anon = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY ?? '';
+
+  const envStatus = {
+    NEXT_PUBLIC_SUPABASE_URL:       url  ? `"${url.substring(0, 30)}..."` : '❌ MISSING',
+    NEXT_PUBLIC_SUPABASE_ANON_KEY:  anon ? `"${anon.substring(0, 20)}..."` : '❌ MISSING',
+    SUPABASE_SERVICE_ROLE_KEY:      process.env.SUPABASE_SERVICE_ROLE_KEY ? '✅ set' : '❌ MISSING',
+  };
+
+  if (!url || !anon) {
+    return NextResponse.json({ diagnosis: 'ENV VARS MISSING', envStatus }, { status: 500 });
+  }
+
   try {
     const supabase = await createSSRSupabase();
-
-    const profileResult  = await supabase.from('profiles').select('count').single();
-    const projectsResult = await supabase.from('projects').select('count').single();
-    const skillsResult   = await supabase.from('skills').select('count').single();
+    const profileResult = await supabase.from('profiles').select('count').single();
 
     return NextResponse.json({
-      env: {
-        url:  process.env.NEXT_PUBLIC_SUPABASE_URL  ? '✅ set' : '❌ missing',
-        anon: process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY ? '✅ set' : '❌ missing',
-      },
-      profiles:  { error: profileResult.error,  data: profileResult.data },
-      projects:  { error: projectsResult.error, data: projectsResult.data },
-      skills:    { error: skillsResult.error,   data: skillsResult.data },
+      diagnosis: 'ENV VARS OK — checking DB',
+      envStatus,
+      profiles: { error: profileResult.error, data: profileResult.data },
     });
   } catch (err) {
-    return NextResponse.json({ fatal: String(err) }, { status: 500 });
+    return NextResponse.json({ diagnosis: 'RUNTIME ERROR', envStatus, fatal: String(err) }, { status: 500 });
   }
 }
