@@ -12,7 +12,6 @@ export default function LoginPage({ params }: { params: { locale: string } }) {
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
   const router = useRouter();
-  const supabase = createClient();
 
   const isAr = params.locale === 'ar';
 
@@ -20,6 +19,7 @@ export default function LoginPage({ params }: { params: { locale: string } }) {
     e.preventDefault();
     setLoading(true);
     setError(null);
+    const supabase = createClient();
 
     const { error: authError } = await supabase.auth.signInWithPassword({
       email,
