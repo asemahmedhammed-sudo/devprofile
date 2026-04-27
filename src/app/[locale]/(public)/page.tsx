@@ -30,13 +30,24 @@ export default async function HomePage({
 }) {
   const locale = params.locale as Locale;
 
-  const [profileData, projects, experience, skills, skillCategories] = await Promise.all([
-    getProfile(locale),
-    getProjects(locale),
-    getExperience(locale),
-    getSkills(locale),
-    getSectionCategories(locale, 'skill'),
-  ]);
+  let profileData = null;
+  let projects: Awaited<ReturnType<typeof getProjects>> = [];
+  let experience: Awaited<ReturnType<typeof getExperience>> = [];
+  let skills: Awaited<ReturnType<typeof getSkills>> = [];
+  let skillCategories: string[] = [];
+
+  try {
+    [profileData, projects, experience, skills, skillCategories] = await Promise.all([
+      getProfile(locale),
+      getProjects(locale),
+      getExperience(locale),
+      getSkills(locale),
+      getSectionCategories(locale, 'skill'),
+    ]);
+  } catch (err) {
+    console.error('[HomePage] Failed to fetch data from Supabase:', err);
+  }
+
 
   if (!profileData) {
     return (
