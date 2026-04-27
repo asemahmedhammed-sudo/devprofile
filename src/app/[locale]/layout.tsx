@@ -9,7 +9,7 @@ import { locales, type Locale } from "@/i18n";
 
 // ─── Metadata ─────────────────────────────────────────────────────────────────
 
-const SITE_URL = "https://asem.dev";
+const SITE_URL = "https://asemahmed.dev";
 
 export async function generateMetadata({
   params,
