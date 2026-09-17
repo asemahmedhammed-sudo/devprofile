@@ -1,5 +1,6 @@
 'use client';
 
+import Image from "next/image";
 import { useState, useMemo } from "react";
 import { motion, AnimatePresence, type Variants } from "framer-motion";
 import type { Project, ProjectStatus } from "@/types";
@@ -166,11 +167,12 @@ function ProjectCard({ project }: { project: Project }) {
       {/* ── Image / Hero area ─────────────────────────────────────────────── */}
       <div className="relative w-full aspect-[16/9] overflow-hidden bg-zinc-100 dark:bg-white/[0.04] flex-shrink-0">
         {project.imageUrl ? (
-          // eslint-disable-next-line @next/next/no-img-element
-          <img
+          <Image
             src={project.imageUrl}
             alt={`${project.title} screenshot`}
-            className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+            fill
+            sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+            className="object-cover transition-transform duration-700 group-hover:scale-105"
           />
         ) : (
           /* Gradient placeholder */

@@ -2,7 +2,7 @@ import type { Metadata, Viewport } from "next";
 import Script from "next/script";
 import { notFound } from "next/navigation";
 import { NextIntlClientProvider } from "next-intl";
-import { getMessages } from "next-intl/server";
+import { getMessages, setRequestLocale } from "next-intl/server";
 import { ThemeProvider } from "@/components/ThemeProvider";
 import { LocaleApplier } from "@/components/LocaleApplier";
 import { locales, type Locale } from "@/i18n";
@@ -97,7 +97,8 @@ export default async function LocaleLayout({
 
   if (!locales.includes(locale as Locale)) notFound();
 
-  const messages = await getMessages();
+  setRequestLocale(locale);
+  const messages = await getMessages({ locale });
   const dir = locale === "ar" ? "rtl" : "ltr";
 
   return (
@@ -112,7 +113,7 @@ export default async function LocaleLayout({
         type="application/ld+json"
         // eslint-disable-next-line react/no-danger
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-        strategy="afterInteractive"
+        strategy="lazyOnload"
       />
     </NextIntlClientProvider>
   );

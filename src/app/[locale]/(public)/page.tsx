@@ -12,8 +12,14 @@ import {
   getSectionCategories,
 } from "@/services/database.service";
 import type { Locale } from "@/types";
+import { getWhatsAppConfig } from "@/lib/whatsapp";
+import { setRequestLocale } from "next-intl/server";
+import { notFound } from "next/navigation";
+import { locales } from "@/i18n";
 
-export const dynamic = 'force-dynamic';
+// ISR: re-generate at most once per 24h; served from CDN edge in between.
+// Increase to a larger interval (e.g. 604800 = 7d) when content changes less frequently.
+export const revalidate = 86400;
 
 function SectionDivider() {
   return (
@@ -29,6 +35,8 @@ export default async function HomePage({
   params: { locale: string };
 }) {
   const locale = params.locale as Locale;
+  if (!locales.includes(locale)) notFound();
+  setRequestLocale(locale);
 
   let profileData = null;
   let projects: Awaited<ReturnType<typeof getProjects>> = [];
@@ -66,6 +74,13 @@ export default async function HomePage({
 
   const profile = { ...profileData, projects, experience, skills };
   const emailLink = profile.social.find((s) => s.platform === "email");
+  const whatsapp = getWhatsAppConfig();
+
+  if (!whatsapp.isValid) {
+    console.warn(
+      `[HomePage] WHATSAPP_NUMBER "${whatsapp.display}" looks incomplete — Saudi numbers must be 10 digits (05XXXXXXXX).`,
+    );
+  }
 
   const NAV_LINKS =
     locale === 'ar'
@@ -105,6 +120,8 @@ export default async function HomePage({
         name={profile.name}
         email={emailLink?.url.replace("mailto:", "") ?? ""}
         social={profile.social}
+        whatsappUrl={whatsapp.url}
+        whatsappDisplay={whatsapp.display}
       />
     </main>
   );

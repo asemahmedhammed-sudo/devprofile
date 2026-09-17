@@ -1,14 +1,24 @@
-import { createSSRSupabase } from '@/lib/supabase';
+import { unstable_cache } from 'next/cache';
+import { createPublicSupabase } from '@/lib/supabase';
 import { ProfileData, Project, WorkExperience, Skill, Locale } from '@/types';
 
 /**
  * Service Layer: maps bilingual DB DTOs to typed UI interfaces resolved for the active locale.
  * All functions accept `locale` and return the correct _en / _ar variant under a generic key.
  * Used exclusively in Server Components/Actions.
+ *
+ * Each fetcher is wrapped in unstable_cache (Next.js Data Cache) with a 24-hour TTL.
+ * On ISR revalidation the cache tag is automatically purged via the page's revalidate window.
  */
 
-export async function getProfile(locale: Locale): Promise<ProfileData | null> {
-  const supabase = await createSSRSupabase();
+// ─── Revalidation window (seconds) ────────────────────────────────────────────
+// Keep in sync with `export const revalidate` in the public page.
+const CACHE_TTL = 86400; // 24 hours
+
+// ─── Profile ──────────────────────────────────────────────────────────────────
+
+const _getProfile = async (locale: Locale): Promise<ProfileData | null> => {
+  const supabase = createPublicSupabase();
   const { data, error } = await supabase.from('profiles').select('*').single();
 
   if (error) {
@@ -23,7 +33,6 @@ export async function getProfile(locale: Locale): Promise<ProfileData | null> {
   return {
     full_name_en: data.full_name_en ?? '',
     full_name_ar: data.full_name_ar ?? '',
-    // Resolved for current locale — convenience accessor used by components
     name: locale === 'ar' ? (data.full_name_ar ?? data.full_name_en ?? '') : (data.full_name_en ?? ''),
     role_en: data.role_en ?? '',
     role_ar: data.role_ar ?? '',
@@ -45,10 +54,18 @@ export async function getProfile(locale: Locale): Promise<ProfileData | null> {
     education: [],
     projects: [],
   };
-}
+};
 
-export async function getProjects(locale: Locale): Promise<Project[]> {
-  const supabase = await createSSRSupabase();
+export const getProfile = (locale: Locale) =>
+  unstable_cache(_getProfile, ['profile', locale, 'v2'], {
+    tags: [`profile-${locale}-v2`],
+    revalidate: CACHE_TTL,
+  })(locale);
+
+// ─── Projects ─────────────────────────────────────────────────────────────────
+
+const _getProjects = async (locale: Locale): Promise<Project[]> => {
+  const supabase = createPublicSupabase();
   const { data, error } = await supabase
     .from('projects')
     .select('*')
@@ -73,10 +90,18 @@ export async function getProjects(locale: Locale): Promise<Project[]> {
     repoUrl: p.github_link ?? undefined,
     startedAt: p.created_at,
   }));
-}
+};
 
-export async function getExperience(locale: Locale): Promise<WorkExperience[]> {
-  const supabase = await createSSRSupabase();
+export const getProjects = (locale: Locale) =>
+  unstable_cache(_getProjects, ['projects', locale, 'v2'], {
+    tags: [`projects-${locale}-v2`],
+    revalidate: CACHE_TTL,
+  })(locale);
+
+// ─── Experience ───────────────────────────────────────────────────────────────
+
+const _getExperience = async (locale: Locale): Promise<WorkExperience[]> => {
+  const supabase = createPublicSupabase();
   const { data, error } = await supabase
     .from('experience')
     .select('*')
@@ -92,7 +117,6 @@ export async function getExperience(locale: Locale): Promise<WorkExperience[]> {
     position_ar: e.position_ar ?? '',
     position: locale === 'ar' ? (e.position_ar ?? e.position_en ?? '') : (e.position_en ?? ''),
     companyUrl: e.company_url ?? undefined,
-    // Read from DB, fallback to 'full-time' for legacy rows
     employmentType: (e.employment_type as WorkExperience['employmentType']) ?? 'full-time',
     location: '',
     startDate: e.start_date,
@@ -103,38 +127,54 @@ export async function getExperience(locale: Locale): Promise<WorkExperience[]> {
     responsibilities: e.description_en ? [e.description_en] : [],
     techStack: [],
   }));
-}
+};
 
-export async function getSkills(locale: Locale): Promise<Skill[]> {
-  const supabase = await createSSRSupabase();
+export const getExperience = (locale: Locale) =>
+  unstable_cache(_getExperience, ['experience', locale, 'v2'], {
+    tags: [`experience-${locale}-v2`],
+    revalidate: CACHE_TTL,
+  })(locale);
+
+// ─── Skills ───────────────────────────────────────────────────────────────────
+
+const _getSkills = async (locale: Locale): Promise<Skill[]> => {
+  const supabase = createPublicSupabase();
   const { data, error } = await supabase
     .from('skills')
     .select('*')
     .order('category_en', { ascending: true })
-    .order('name_en',     { ascending: true });
+    .order('name_en', { ascending: true });
 
   if (error || !data) return [];
 
   return data.map((s) => ({
-    name_en:     s.name_en ?? '',
-    name_ar:     s.name_ar ?? '',
-    name:        locale === 'ar' ? (s.name_ar ?? s.name_en ?? '') : (s.name_en ?? ''),
-    level:       s.proficiency_level as Skill['level'],
+    name_en: s.name_en ?? '',
+    name_ar: s.name_ar ?? '',
+    name: locale === 'ar' ? (s.name_ar ?? s.name_en ?? '') : (s.name_en ?? ''),
+    level: s.proficiency_level as Skill['level'],
     category_en: s.category_en ?? '',
     category_ar: s.category_ar ?? '',
-    category:    locale === 'ar' ? (s.category_ar ?? s.category_en ?? '') : (s.category_en ?? ''),
+    category: locale === 'ar' ? (s.category_ar ?? s.category_en ?? '') : (s.category_en ?? ''),
   }));
-}
+};
+
+export const getSkills = (locale: Locale) =>
+  unstable_cache(_getSkills, ['skills', locale, 'v2'], {
+    tags: [`skills-${locale}-v2`],
+    revalidate: CACHE_TTL,
+  })(locale);
+
+// ─── Section Categories ───────────────────────────────────────────────────────
 
 /**
  * Returns ordered category names from the central categories table for a given section.
  * Used by public pages to render categories in the admin-defined order.
  */
-export async function getSectionCategories(
+const _getSectionCategories = async (
   locale: Locale,
   section: 'skill' | 'project' | 'experience',
-): Promise<string[]> {
-  const supabase = await createSSRSupabase();
+): Promise<string[]> => {
+  const supabase = createPublicSupabase();
   const { data } = await supabase
     .from('categories')
     .select('name_en, name_ar')
@@ -143,4 +183,10 @@ export async function getSectionCategories(
 
   if (!data) return [];
   return data.map((c) => (locale === 'ar' ? (c.name_ar || c.name_en) : c.name_en) as string);
-}
+};
+
+export const getSectionCategories = (locale: Locale, section: 'skill' | 'project' | 'experience') =>
+  unstable_cache(_getSectionCategories, ['categories', locale, section, 'v2'], {
+    tags: [`categories-${locale}-${section}-v2`],
+    revalidate: CACHE_TTL,
+  })(locale, section);

@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html class="scroll-smooth" dir="rtl" lang="ar">
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <title>تواصل معي — عاصم أحمد | Asem Ahmed</title>
+  <!-- Google Fonts: IBM Plex Sans Arabic & JetBrains Mono -->
+  <link href="https://fonts.googleapis.com" rel="preconnect">
+  <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect">
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <!-- Tailwind CSS v3 -->
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['"IBM Plex Sans Arabic"', 'sans-serif'],
+            mono: ['"JetBrains Mono"', 'monospace'],
+          },
+          colors: {
+            brand: {
+              charcoal: '#090d16',
+              surface: '#fcfcfd',
+              card: '#ffffff',
+              emerald: '#059669',
+              'emerald-soft': '#ecfdf5',
+              border: '#e2e8f0',
+              subtle: '#64748b'
+            }
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    body {
+      font-family: 'IBM Plex Sans Arabic', sans-serif;
+      text-rendering: optimizeLegibility;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+    .editorial-grain {
+      background-image: radial-gradient(circle at 85% 10%, rgba(5, 150, 105, 0.035) 0%, rgba(250, 250, 252, 0) 55%),
+                        radial-gradient(circle at 15% 75%, rgba(15, 23, 42, 0.02) 0%, rgba(250, 250, 252, 0) 65%);
+    }
+    .arrow-shift {
+      transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .group:hover .arrow-shift {
+      transform: translateX(-5px);
+    }
+    /* Quiet luxury micro-elevation */
+    .quiet-card {
+      box-shadow: 0 1px 3px 0 rgba(15, 23, 42, 0.03), 0 10px 30px -5px rgba(15, 23, 42, 0.03);
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .quiet-card:hover {
+      box-shadow: 0 4px 6px -1px rgba(15, 23, 42, 0.04), 0 20px 40px -10px rgba(15, 23, 42, 0.07);
+      transform: translateY(-2px);
+    }
+  </style>
+</head>
+<body class="bg-[#fafbfc] text-[#0f172a] antialiased min-h-screen flex flex-col justify-between selection:bg-slate-900 selection:text-white relative font-sans">
+
+  <!-- Architectural Ambient Glow -->
+  <div aria-hidden="true" class="fixed inset-0 editorial-grain pointer-events-none z-0"></div>
+
+  <!-- MAIN CONTACT SECTION -->
+  <main class="relative z-10 flex-grow flex flex-col justify-center pt-20 pb-16 lg:pt-28 lg:pb-24 px-4 sm:px-6 lg:px-8">
+    <div class="max-w-[1160px] w-full mx-auto">
+
+      <!-- SECTION HEADER -->
+      <section class="mb-14 lg:mb-16">
+        <!-- Badge row: 05 / تواصل + Availability -->
+        <div class="flex flex-wrap items-center gap-3 mb-6">
+          <span class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-slate-200/90 bg-white/90 shadow-[0_1px_2px_rgba(0,0,0,0.02)] text-xs font-mono font-medium text-slate-700">
+            <span class="w-1.5 h-1.5 rounded-full bg-slate-400"></span>
+            <span>05 / تواصل</span>
+          </span>
+
+          <span class="inline-flex items-center gap-2.5 px-3.5 py-1.5 rounded-full border border-emerald-200/80 bg-emerald-50/70 text-xs font-medium text-emerald-800 shadow-[0_1px_2px_rgba(5,150,105,0.04)]">
+            <span class="relative flex h-2 w-2">
+              <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-60"></span>
+              <span class="relative inline-flex rounded-full h-2 w-2 bg-emerald-600"></span>
+            </span>
+            <span>متاح حالياً للمشاريع والفرص القيادية</span>
+          </span>
+        </div>
+
+        <!-- Grand Editorial Heading -->
+        <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-[#090d16] tracking-tight leading-[1.2] mb-6">
+          لنبني شيئاً <span class="relative inline-block text-slate-950 underline decoration-slate-200 decoration-4 underline-offset-8">استثنائياً.</span>
+        </h1>
+
+        <!-- Subheading -->
+        <p class="text-slate-600 text-lg md:text-xl font-normal leading-relaxed max-w-2xl">
+          لديك فكرة تستحق التنفيذ، أو مشروع طموح، أو فرصة للتعاون؟ يسعدني أن نبدأ الحديث. تواصل معي مباشرة عبر القناة الأنسب لك.
+        </p>
+      </section>
+
+      <!-- CONTACT CARDS GRID: 2 Equal Columns -->
+      <section class="grid grid-cols-1 md:grid-cols-2 gap-7 lg:gap-8 mb-14" aria-label="وسائل التواصل المباشرة">
+
+        <!-- CARD 1: WHATSAPP (Understated Emerald Accent) -->
+        <article class="group relative bg-white rounded-3xl p-7 sm:p-9 border border-slate-200/85 quiet-card flex flex-col justify-between">
+          <div class="relative z-10">
+            <!-- Header Row: Icon Badge + Channel Pill -->
+            <div class="flex items-center justify-between gap-4 mb-7">
+              <div class="w-13 h-13 sm:w-14 sm:h-14 rounded-2xl bg-emerald-50/90 border border-emerald-100/90 flex items-center justify-center text-emerald-600 shadow-sm transition-transform duration-300 group-hover:scale-105">
+                <!-- Clean WhatsApp SVG -->
+                <svg class="w-6 h-6 sm:w-7 sm:h-7" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766.001-3.187-2.575-5.77-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.312.045-.698.077-2.222-.553-1.61-.664-2.658-2.316-2.738-2.423-.08-.107-.655-.87-.655-1.658 0-.788.414-1.176.56-1.332.146-.156.32-.196.427-.196.107 0 .213.001.306.006.098.005.23-.037.36.275.133.321.455 1.11.494 1.19.04.08.067.174.013.281-.053.107-.08.174-.16.267-.08.094-.17.209-.243.281-.08.08-.163.167-.07.327.094.16.417.689.896 1.116.616.55 1.135.72 1.296.8.16.08.254.067.347-.04.094-.107.4-.467.507-.627.107-.16.214-.134.36-.08.147.054.935.441 1.095.521.16.08.267.12.307.187.04.067.04.387-.104.792zM12 2C6.477 2 2 6.477 2 12c0 1.89.525 3.66 1.438 5.168L2.54 21.46a.75.75 0 00.916.923l4.417-.912A9.957 9.957 0 0012 22c5.523 0 10-4.477 10-10S17.523 2 12 2zm0 18c-1.636 0-3.16-.484-4.436-1.319l-.317-.208-2.617.54.55-2.551-.21-.328A7.95 7.95 0 014 12c0-4.411 3.589-8 8-8s8 3.589 8 8-3.589 8-8 8z"/>
+                </svg>
+              </div>
+
+              <span class="text-xs font-semibold px-3 py-1.5 rounded-full bg-emerald-50 text-emerald-700 border border-emerald-100">
+                محادثة فورية
+              </span>
+            </div>
+
+            <!-- Title & Explanatory text -->
+            <h2 class="text-2xl font-bold text-slate-900 mb-1.5">واتساب</h2>
+            <p class="text-slate-500 text-sm mb-6 leading-relaxed">
+              للاستفسارات السريعة، النقاشات المباشرة، وبدء المشاريع الفورية.
+            </p>
+
+            <!-- Inset Row: LTR Phone & Copy Button with Inline Feedback -->
+            <div class="relative bg-slate-50/90 rounded-2xl p-3.5 sm:p-4 border border-slate-100 flex items-center justify-between mb-8 group-hover:border-emerald-200/70 transition-colors">
+              <span class="font-mono text-xl sm:text-2xl font-bold tracking-wider text-slate-900 select-all" dir="ltr">
+                0530004982
+              </span>
+
+              <div class="relative flex items-center">
+                <!-- Inline Copied Notification -->
+                <span id="feedback-whatsapp" class="absolute -top-8 left-1/2 -translate-x-1/2 text-[11px] font-medium bg-slate-900 text-white px-2 py-0.5 rounded shadow opacity-0 pointer-events-none transition-opacity duration-200">تم النسخ!</span>
+
+                <button 
+                  type="button"
+                  id="btn-copy-whatsapp"
+                  onclick="copyText('0530004982', 'feedback-whatsapp', this)"
+                  class="text-xs font-medium px-3 py-1.5 rounded-xl border border-slate-200 bg-white hover:bg-slate-100 active:scale-95 text-slate-700 transition-all flex items-center gap-1.5 shadow-2xs"
+                  title="نسخ الرقم"
+                >
+                  <svg class="w-3.5 h-3.5 text-slate-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
+                  </svg>
+                  <span class="copy-label">نسخ</span>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Explicit Full-Width CTA -->
+          <a href="https://wa.me/966530004982" target="_blank" rel="noopener noreferrer" class="w-full inline-flex items-center justify-center gap-3 px-6 py-4 rounded-2xl bg-emerald-600 hover:bg-emerald-700 active:bg-emerald-800 text-white font-semibold text-base transition-all duration-200 shadow-[0_4px_14px_rgba(5,150,105,0.22)]">
+            <span>بدء المحادثة على واتساب</span>
+            <svg class="w-5 h-5 arrow-shift" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path d="M10 19l-7-7m0 0l7-7m-7 7h18" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2"/>
+            </svg>
+          </a>
+        </article>
+
+        <!-- CARD 2: EMAIL (Quiet Charcoal / Editorial Accent) -->
+        <article class="group relative bg-white rounded-3xl p-7 sm:p-9 border border-slate-200/85 quiet-card flex flex-col justify-between">
+          <div class="relative z-10">
+            <!-- Header Row: Icon Badge + Channel Pill -->
+            <div class="flex items-center justify-between gap-4 mb-7">
+              <div class="w-13 h-13 sm:w-14 sm:h-14 rounded-2xl bg-slate-100 border border-slate-200 flex items-center justify-center text-slate-800 shadow-sm transition-transform duration-300 group-hover:scale-105">
+                <!-- Clean Mail SVG -->
+                <svg class="w-6 h-6 sm:w-7 sm:h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8"/>
+                </svg>
+              </div>
+
+              <span class="text-xs font-semibold px-3 py-1.5 rounded-full bg-slate-100 text-slate-700 border border-slate-200">
+                البريد الإلكتروني
+              </span>
+            </div>
+
+            <!-- Title & Explanatory text -->
+            <h2 class="text-2xl font-bold text-slate-900 mb-1.5">المراسلات الرسمية</h2>
+            <p class="text-slate-500 text-sm mb-6 leading-relaxed">
+              للمقترحات المهنية، الشراكات الاستراتيجية، واستشارات بناء الأنظمة.
+            </p>
+
+            <!-- Inset Row: LTR Long Email with break-all & Copy Button -->
+            <div class="relative bg-slate-50/90 rounded-2xl p-3.5 sm:p-4 border border-slate-100 flex items-center justify-between mb-8 group-hover:border-slate-300 transition-colors">
+              <span class="font-mono text-sm sm:text-base font-semibold tracking-normal text-slate-900 break-all select-all min-w-0" dir="ltr">
+                asemahmedhammed@gmail.com
+              </span>
+
+              <div class="relative flex items-center shrink-0 mr-2">
+                <!-- Inline Copied Notification -->
+                <span id="feedback-email" class="absolute -top-8 left-1/2 -translate-x-1/2 text-[11px] font-medium bg-slate-900 text-white px-2 py-0.5 rounded shadow opacity-0 pointer-events-none transition-opacity duration-200">تم النسخ!</span>
+
+                <button 
+                  type="button"
+                  id="btn-copy-email"
+                  onclick="copyText('asemahmedhammed@gmail.com', 'feedback-email', this)"
+                  class="text-xs font-medium px-3 py-1.5 rounded-xl border border-slate-200 bg-white hover:bg-slate-100 active:scale-95 text-slate-700 transition-all flex items-center gap-1.5 shadow-2xs"
+                  title="نسخ البريد الإلكتروني"
+                >
+                  <svg class="w-3.5 h-3.5 text-slate-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
+                  </svg>
+                  <span class="copy-label">نسخ</span>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Explicit Full-Width CTA -->
+          <a href="mailto:asemahmedhammed@gmail.com" class="w-full inline-flex items-center justify-center gap-3 px-6 py-4 rounded-2xl bg-[#090d16] hover:bg-slate-800 active:bg-slate-950 text-white font-semibold text-base transition-all duration-200 shadow-[0_4px_14px_rgba(9,13,22,0.18)]">
+            <span>إرسال رسالة بريدية</span>
+            <svg class="w-5 h-5 arrow-shift" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path d="M10 19l-7-7m0 0l7-7m-7 7h18" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2"/>
+            </svg>
+          </a>
+        </article>
+
+      </section>
+
+      <!-- SLIM PROFESSIONAL NETWORK ROW -->
+      <section class="flex flex-col sm:flex-row items-center justify-between gap-4 p-5 sm:p-6 rounded-2xl bg-white/80 border border-slate-200/80 backdrop-blur-sm" aria-label="روابط التواصل المهني">
+        <div class="flex items-center gap-3">
+          <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
+          <p class="text-sm font-semibold text-slate-800">شبكات التواصل المهني</p>
+          <span class="text-xs text-slate-400 font-mono hidden sm:inline">/ Follow &amp; Connect</span>
+        </div>
+
+        <div class="flex items-center gap-3">
+          <!-- LinkedIn -->
+          <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" aria-label="حساب لينكد إن الخاص بعاصم أحمد" class="inline-flex items-center gap-2.5 px-4 py-2 rounded-xl bg-white border border-slate-200 hover:border-slate-400 text-slate-700 hover:text-slate-950 text-sm font-medium transition shadow-2xs hover:shadow-xs group">
+            <svg class="w-4 h-4 fill-current text-slate-600 group-hover:text-[#0077b5] transition-colors" viewBox="0 0 24 24">
+              <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
+            </svg>
+            <span class="font-sans">LinkedIn</span>
+          </a>
+
+          <!-- GitHub -->
+          <a href="https://github.com" target="_blank" rel="noopener noreferrer" aria-label="حساب جيت هب الخاص بعاصم أحمد" class="inline-flex items-center gap-2.5 px-4 py-2 rounded-xl bg-white border border-slate-200 hover:border-slate-400 text-slate-700 hover:text-slate-950 text-sm font-medium transition shadow-2xs hover:shadow-xs group">
+            <svg class="w-4 h-4 fill-current text-slate-700 group-hover:text-black transition-colors" viewBox="0 0 24 24">
+              <path clip-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" fill-rule="evenodd"/>
+            </svg>
+            <span class="font-sans">GitHub</span>
+          </a>
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+  <!-- MINIMAL EDITORIAL FOOTER -->
+  <footer class="relative z-10 border-t border-slate-200/80 bg-white/60 backdrop-blur-md py-8">
+    <div class="max-w-[1160px] mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex flex-col-reverse sm:flex-row items-center justify-between gap-4 text-sm text-slate-500">
+        <!-- Copyright Text -->
+        <p class="font-normal text-center sm:text-right">
+          © 2026 <span class="font-semibold text-slate-900">عاصم أحمد</span>. صُنع بعناية وإتقان.
+        </p>
+
+        <!-- Return to Top Action -->
+        <button 
+          type="button" 
+          onclick="window.scrollTo({top: 0, behavior: 'smooth'});" 
+          class="inline-flex items-center gap-2 text-xs font-medium text-slate-600 hover:text-slate-950 transition py-1.5 px-3.5 rounded-lg hover:bg-slate-100/80 active:scale-95 group"
+        >
+          <span>العودة للأعلى</span>
+          <span class="text-sm leading-none transition-transform duration-200 group-hover:-translate-y-0.5">↑</span>
+        </button>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Inline Copy Feedback Script (No Alert Dialogs) -->
+  <script>
+    function copyText(text, feedbackId, button) {
+      if (navigator.clipboard && window.isSecureContext) {
+        navigator.clipboard.writeText(text).then(showSuccess).catch(fallbackCopy);
+      } else {
+        fallbackCopy();
+      }
+
+      function fallbackCopy() {
+        const tempInput = document.createElement("input");
+        tempInput.value = text;
+        document.body.appendChild(tempInput);
+        tempInput.select();
+        try {
+          document.execCommand('copy');
+          showSuccess();
+        } catch (err) {
+          console.error('Copy failed', err);
+        }
+        document.body.removeChild(tempInput);
+      }
+
+      function showSuccess() {
+        const feedback = document.getElementById(feedbackId);
+        const label = button.querySelector('.copy-label');
+        const originalText = label ? label.textContent : '';
+
+        if (feedback) {
+          feedback.style.opacity = '1';
+          setTimeout(() => {
+            feedback.style.opacity = '0';
+          }, 1800);
+        }
+
+        if (label) {
+          label.textContent = 'تم!';
+          button.classList.add('border-emerald-500', 'text-emerald-700');
+          setTimeout(() => {
+            label.textContent = originalText;
+            button.classList.remove('border-emerald-500', 'text-emerald-700');
+          }, 1800);
+        }
+      }
+    }
+  </script>
+</body>
+</html>

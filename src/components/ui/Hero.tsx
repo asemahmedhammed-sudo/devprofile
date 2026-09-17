@@ -1,5 +1,6 @@
 'use client';
 
+import Image from "next/image";
 import { motion, type Variants } from "framer-motion";
 import type { ProfileData } from "@/types";
 
@@ -17,17 +18,17 @@ const containerLeft: Variants = {
 
 const item: Variants = {
   hidden: { opacity: 0, y: 20 },
-  show:   { opacity: 1, y: 0, transition: { duration: 0.7, ease: EASE } },
+  show: { opacity: 1, y: 0, transition: { duration: 0.7, ease: EASE } },
 };
 
 const photoVariant: Variants = {
   hidden: { opacity: 0, scale: 0.96, x: 30 },
-  show:   { opacity: 1, scale: 1,    x: 0,  transition: { duration: 0.9, ease: EASE, delay: 0.2 } },
+  show: { opacity: 1, scale: 1, x: 0, transition: { duration: 0.9, ease: EASE, delay: 0.2 } },
 };
 
 export default function Hero({ profile, resumeUrl = "/resume.pdf" }: HeroProps) {
   const primaryLink = profile.social.find((s) => s.platform === "linkedin");
-  const githubLink  = profile.social.find((s) => s.platform === "github");
+  const githubLink = profile.social.find((s) => s.platform === "github");
 
   return (
     <section
@@ -183,13 +184,14 @@ export default function Hero({ profile, resumeUrl = "/resume.pdf" }: HeroProps) 
               />
 
               {/* Photo container */}
-              <div className="relative rounded-2xl overflow-hidden shadow-xl shadow-zinc-200/60 dark:shadow-black/30">
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img
+              <div className="relative rounded-2xl overflow-hidden shadow-xl shadow-zinc-200/60 dark:shadow-black/30 aspect-[3/4]">
+                <Image
                   src={profile.avatarUrl}
                   alt={profile.name}
-                  className="w-full h-full object-cover object-top"
-                  style={{ aspectRatio: '3 / 4' }}
+                  fill
+                  priority
+                  sizes="(max-width: 640px) 16rem, (max-width: 1024px) 18rem, 21rem"
+                  className="object-cover object-top"
                 />
 
                 {/* Very subtle bottom gradient fade — name badge */}

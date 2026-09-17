@@ -1,4 +1,5 @@
 import { createServerClient } from '@supabase/ssr';
+import { createClient } from '@supabase/supabase-js';
 import { cookies } from 'next/headers';
 
 /**
@@ -25,6 +26,22 @@ export async function createSSRSupabase() {
             // Server Component — middleware handles session refresh
           }
         },
+      },
+    }
+  );
+}
+
+/**
+ * Server-side cookieless Supabase client for public data fetching.
+ * Safe to use inside `unstable_cache` because it doesn't access `cookies()`.
+ */
+export function createPublicSupabase() {
+  return createClient(
+    process.env.NEXT_PUBLIC_SUPABASE_URL!,
+    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
+    {
+      auth: {
+        persistSession: false,
       },
     }
   );

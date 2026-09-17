@@ -22,5 +22,28 @@
     "passphrase": "Passphrase",
     "signIn": "Sign In",
     "authenticating": "Authenticating..."
+  },
+  "footer": {
+    "sectionLabel": "05 / Contact",
+    "ctaHeading": "Let's build something extraordinary.",
+    "ctaSubtext": "Open to senior roles, consulting, and ambitious side projects. Reach out directly — I typically respond within 24 hours.",
+    "whatsappLabel": "WhatsApp",
+    "emailLabel": "Email",
+    "socialLabel": "Professional networks",
+    "crafted": "Crafted with care.",
+    "availability": "Available for projects and leadership opportunities",
+    "whatsappCategory": "Direct conversation",
+    "whatsappDescription": "For quick questions, direct conversations, and getting new projects started.",
+    "whatsappAction": "Start a WhatsApp conversation",
+    "emailTitle": "Professional enquiries",
+    "emailDescription": "For proposals, opportunities, strategic partnerships, and consulting.",
+    "emailAction": "Send an email",
+    "copy": "Copy",
+    "copied": "Copied",
+    "copyPhone": "Copy WhatsApp number",
+    "copyEmail": "Copy email address",
+    "copySuccess": "Copied successfully.",
+    "copyError": "Unable to copy. You can select and copy the text manually.",
+    "backToTop": "Back to top"
   }
 }
